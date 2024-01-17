@@ -1,6 +1,4 @@
 \documentclass[conference]{IEEEtran}
-% \IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -48,7 +46,7 @@ Using this method to grant access comes with several issues.
 First, the resource owner has no option but the update his credentials if he wants to revoke the granted access.
 Second, by disclosing the credentials to the resource server, the client gets access to all resources hosted on that server and third, the compromisation of that client results in a compromisation of the resource owner's credentials and therefore all of the resources of the user hosted on the resource server.
 
-To address those problems, the OAuth protocol specifies an authorization flow describing how clients can request access and how resource owners can satisfy this request without having to disclose their credentials which is also easy to revoke.
+To address those problems, the OAuth protocol specifies an authorization flow describing how clients can request access and how resource owners can satisfy this request without having to disclose their credentials which is also easy to revoke. \cite{b1}
 
 \subsubsection*{OAuth}
 The protocol introduces four roles:
@@ -66,18 +64,18 @@ The client can request the resource from the resource server using the access to
 The resource server validates the access token and serves the resource if the token is valid.
 
 OAuth 2.0 as an authorization standard indeed solves the problems with naive access granting but still leaves the user with the burden of trusting the authorization and resource server to comply with the OAuth specification, protect the resources effectively, and consequently enforce the authorization of clients.
-This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications incorrectly implemented the OAuth 2.0 flow thus making the application vulnerable.
+This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications using OAuth incorrectly implemented the OAuth 2.0 flow, thus making the application vulnerable. \cite{b2}
 
 \section{Decentralized Access Control}
-With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale.
-Data-centric centralized industry practices assume that the service provider is part of the user's trusted domain and therefore no effort is made to ensure data confidentiality, allowing for uncontrolled sharing of this highly personal data.
-These industry practices have led to attempts to control data privacy via privacy regulations that introduced the challenge of ensuring that service providers follow accordingly.
+With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale. \cite{b5}
+Data-centric centralized industry practices assume that the service provider is part of the user's trusted domain and therefore no effort is made to ensure data confidentiality, allowing for uncontrolled sharing of this highly personal data. \cite{b6}
+These industry practices have led to attempts to control data privacy via privacy regulations that introduced the challenge of ensuring that service providers follow accordingly. \cite{b7}
 
-Shortcomings in privacy have led to a call for a paradigm shift towards a user-centric approach both in technical and non-technical communities.
+Shortcomings in privacy have led to a call for a paradigm shift towards a user-centric approach, as opposed to a data-centric approach, both in technical and non-technical communities. \cite{b3, b6}
 
 \subsubsection{Definition}
 Decentralized Access Control enables data owners to verifiably share data with data consumers by specifying fine-grained access policies without exposing the data in clear to any third party and without the need to rely on any trusted intermediate.
-The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen.
+The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen. \cite{b3}
 
 The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen.
 
@@ -126,16 +124,16 @@ An Update to the access policy only requires the user to publish a new access po
 \subsection{Decentralized Access Control with the Example of Calypso}
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\bibitem{b1} D. Hardt, “The OAuth 2.0 Authorization Framework,” Internet Engineering Task Force, Request for Comments RFC 6749, Oct. 2012. doi: 10.17487/RFC6749.
+\bibitem{b2} E. Y. Chen, Y. Pei, S. Chen, Y. Tian, R. Kotcher, and P. Tague, “OAuth Demystified for Mobile Application Developers,” in Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, in CCS ’14. New York, NY, USA: Association for Computing Machinery, Nov. 2014, pp. 892–903. doi: 10.1145/2660267.2660323.
+\bibitem{b3} J. Ernstberger et al., “SoK: Data Sovereignty.” 2023. Accessed: Dec. 13, 2023. [Online]. Available: https://eprint.iacr.org/2023/967
+\bibitem{b4} B. Zhang et al., “The Cloud is Not Enough: Saving {IoT} from the Cloud,” presented at the 7th USENIX Workshop on Hot Topics in Cloud Computing (HotCloud 15), 2015. Accessed: Jan. 15, 2024. [Online]. Available: https://www.usenix.org/conference/hotcloud15/workshop-program/presentation/zhang
+\bibitem{b5} H. Shafagh, L. Burkhalter, S. Ratnasamy, and A. Hithnawi, “Droplet: Decentralized Authorization and Access Control for Encrypted Data Streams,” presented at the 29th USENIX Security Symposium (USENIX Security 20), 2020, pp. 2469–2486. Accessed: Dec. 13, 2023. [Online]. Available: https://www.usenix.org/conference/usenixsecurity20/presentation/shafagh
+\bibitem{b6} E. Kokoris-Kogias, E. C. Alp, L. Gasser, P. Jovanovic, E. Syta, and B. Ford, “CALYPSO: Private Data Management for Decentralized Ledgers.” 2018. Accessed: Dec. 13, 2023. [Online]. Available: https://eprint.iacr.org/2018/209
+\bibitem{b7} “General Data Protection Regulation (GDPR) Compliance Guidelines,” GDPR.eu. Accessed: Jan. 17, 2024. [Online]. Available: https://gdpr.eu/
+
+
+
 \end{thebibliography}
-\vspace{12pt}
-\color{red}
-IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
 
 \end{document}
