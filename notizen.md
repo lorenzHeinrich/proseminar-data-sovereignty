@@ -1,5 +1,11 @@
 # Proseminar Data Sovereignty
 
+## Meeting 18.01.24 16:30
+
+- Hauptproblem Aktuell. Kein Verständnis für selbst gewähltes Thema
+- Notlösung anderes Thema: Anonymous Access
+    -> Frage: How can Data Consumers remain anonymous during "authenticate" and "access"?
+    -> Ausarbeitung andhand Calypso und Droplet
 
 - ## Abstract
 - ## Introduction
@@ -67,9 +73,9 @@
         
         Using this secret k for a data item that is desirable to grant access to, the data item is encrypted and stored in the user's wallet or another storage system, and an access policy is published on-chain specifying under which conditions a data consumer is authorized to access the data item.
 
-        A data consumer wishing to access the data item is required to supply proof to the committee of access controller stating that the data consumer fulfills the access policy.
+        A data consumer wishing to access the data item is required to supply proof to the committee of access controllers, stating that the data consumer fulfills the access policy.
 
-        After validating the supplied proof from the data consumer the committee of access controllers releases the secret shares of the secret key k that was used for the encryption of the data item, the data consumer proved to have access to.
+        After validating the supplied proof from the data consumer the committee of access controllers releases the secret shares of the secret key k that was used for the encryption of the data item, the data consumer has proved to have access to.
 
         Using the shares and the ciphertext of the data item, the data consumer can successfully decipher it by reconstructing the secret k.
 
@@ -86,22 +92,14 @@
 
     ### Decentralized Access Control with the Example of Calypso
 
+
+- ## Anonymity vs Auditabilty. Compatible?
     
+    ## Why is it desirable to stay anonymous
+    ## Key Blinding
+    ## Auditability
 
-
-
-
-    - on-chain access policies
-    - decentralized access management
-    - mechanisms
-    - properties
-
-- Expressive and Confidential Access Policies?
-    - Calypso
-    - another example
-    - Analysis
-
-- Link to Data Sovereignty
+- ## Link to Data Sovereignty
 
 
 ## Meeting 14.12.23 16:30

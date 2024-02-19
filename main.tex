@@ -1,25 +1,25 @@
 \documentclass[conference]{IEEEtran}
+
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
   T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
 \title{Decentralized Access Control}%*\\
-% {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
-% should not be used}
-% \thanks{Identify applicable funding agency here. If none, delete this.}
-% }
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Heinrich Lorenz}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-Karlsruhe, Germany \\
-lorenz.heinrich@student.kit.edu}
+\author{
+  \IEEEauthorblockN{
+    1\textsuperscript{st} Heinrich Lorenz}
+    \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+    \textit{name of organization (of Aff.)}\\
+    Karlsruhe, Germany \\
+    lorenz.heinrich@student.kit.edu}
 }
 
 \maketitle
@@ -46,7 +46,7 @@ Using this method to grant access comes with several issues.
 First, the resource owner has no option but the update his credentials if he wants to revoke the granted access.
 Second, by disclosing the credentials to the resource server, the client gets access to all resources hosted on that server and third, the compromisation of that client results in a compromisation of the resource owner's credentials and therefore all of the resources of the user hosted on the resource server.
 
-To address those problems, the OAuth protocol specifies an authorization flow describing how clients can request access and how resource owners can satisfy this request without having to disclose their credentials which is also easy to revoke. \cite{b1}
+To address those problems, the OAuth protocol specifies an authorization flow describing how clients can request access and how resource owners can satisfy this request without having to disclose their credentials which is also easy to revoke. \cite{hardt_oauth_2012}
 
 \subsubsection*{OAuth}
 The protocol introduces four roles:
@@ -64,18 +64,18 @@ The client can request the resource from the resource server using the access to
 The resource server validates the access token and serves the resource if the token is valid.
 
 OAuth 2.0 as an authorization standard indeed solves the problems with naive access granting but still leaves the user with the burden of trusting the authorization and resource server to comply with the OAuth specification, protect the resources effectively, and consequently enforce the authorization of clients.
-This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications using OAuth incorrectly implemented the OAuth 2.0 flow, thus making the application vulnerable. \cite{b2}
+This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications using OAuth incorrectly implemented the OAuth 2.0 flow, thus making the application vulnerable. \cite{chen_oauth_2014}
 
 \section{Decentralized Access Control}
-With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale. \cite{b5}
-Data-centric centralized industry practices assume that the service provider is part of the user's trusted domain and therefore no effort is made to ensure data confidentiality, allowing for uncontrolled sharing of this highly personal data. \cite{b6}
-These industry practices have led to attempts to control data privacy via privacy regulations that introduced the challenge of ensuring that service providers follow accordingly. \cite{b7}
+With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale. \cite{zhang_cloud_2015}
+Data-centric centralized industry practices assume that the service provider is part of the user's trusted domain and therefore no effort is made to ensure data confidentiality, allowing for uncontrolled sharing of this highly personal data. \cite{shafagh_droplet_2020}
+These industry practices have led to attempts to control data privacy via privacy regulations that introduced the challenge of ensuring that service providers follow accordingly. \cite{noauthor_general_nodate}
 
-Shortcomings in privacy have led to a call for a paradigm shift towards a user-centric approach, as opposed to a data-centric approach, both in technical and non-technical communities. \cite{b3, b6}
+Shortcomings in privacy have led to a call for a paradigm shift towards a user-centric approach, as opposed to a data-centric approach, both in technical and non-technical communities. \cite{ernstberger_sok_2023, shafagh_droplet_2020}
 
 \subsubsection{Definition}
 Decentralized Access Control enables data owners to verifiably share data with data consumers by specifying fine-grained access policies without exposing the data in clear to any third party and without the need to rely on any trusted intermediate.
-The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen. \cite{b3}
+The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen. \cite{ernstberger_sok_2023}
 
 The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen.
 
@@ -84,6 +84,8 @@ The primary goal of the concept of decentralized access control is to bring back
 The model of decentralized access control is described as follows:
 
 \begin{itemize}
+  \item \textbf{Data Owner:} A User that wants to share personal data with a data consumer.
+  \item \textbf{Data Consumer:} A service that wants to access personal data of the user.
   \item \textbf{Storage:} The location where the encrypted data units are stored.
   The Storage can be local, a centralized, or a decentralized storage provider.
   \item \textbf{Access Controler:} Computational Nodes, granting access to a ciphertext by releasing the according secret shares to the requesting data consumer after validation of the proof of policy satisfaction provided by the data consumer.
@@ -123,17 +125,12 @@ An Update to the access policy only requires the user to publish a new access po
 
 \subsection{Decentralized Access Control with the Example of Calypso}
 
-\begin{thebibliography}{00}
-\bibitem{b1} D. Hardt, “The OAuth 2.0 Authorization Framework,” Internet Engineering Task Force, Request for Comments RFC 6749, Oct. 2012. doi: 10.17487/RFC6749.
-\bibitem{b2} E. Y. Chen, Y. Pei, S. Chen, Y. Tian, R. Kotcher, and P. Tague, “OAuth Demystified for Mobile Application Developers,” in Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security, in CCS ’14. New York, NY, USA: Association for Computing Machinery, Nov. 2014, pp. 892–903. doi: 10.1145/2660267.2660323.
-\bibitem{b3} J. Ernstberger et al., “SoK: Data Sovereignty.” 2023. Accessed: Dec. 13, 2023. [Online]. Available: https://eprint.iacr.org/2023/967
-\bibitem{b4} B. Zhang et al., “The Cloud is Not Enough: Saving {IoT} from the Cloud,” presented at the 7th USENIX Workshop on Hot Topics in Cloud Computing (HotCloud 15), 2015. Accessed: Jan. 15, 2024. [Online]. Available: https://www.usenix.org/conference/hotcloud15/workshop-program/presentation/zhang
-\bibitem{b5} H. Shafagh, L. Burkhalter, S. Ratnasamy, and A. Hithnawi, “Droplet: Decentralized Authorization and Access Control for Encrypted Data Streams,” presented at the 29th USENIX Security Symposium (USENIX Security 20), 2020, pp. 2469–2486. Accessed: Dec. 13, 2023. [Online]. Available: https://www.usenix.org/conference/usenixsecurity20/presentation/shafagh
-\bibitem{b6} E. Kokoris-Kogias, E. C. Alp, L. Gasser, P. Jovanovic, E. Syta, and B. Ford, “CALYPSO: Private Data Management for Decentralized Ledgers.” 2018. Accessed: Dec. 13, 2023. [Online]. Available: https://eprint.iacr.org/2018/209
-\bibitem{b7} “General Data Protection Regulation (GDPR) Compliance Guidelines,” GDPR.eu. Accessed: Jan. 17, 2024. [Online]. Available: https://gdpr.eu/
+\section{Confidential yet Expressive Access Policies?}
+
+\subsection{On-Chain Secrets}
 
 
-
-\end{thebibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
 
 \end{document}

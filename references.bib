@@ -1,0 +1,114 @@
+
+@misc{ernstberger_sok_2023,
+	title = {{SoK}: {Data} {Sovereignty}},
+	shorttitle = {{SoK}},
+	url = {https://eprint.iacr.org/2023/967},
+	abstract = {Society appears to be on the verge of recognizing the need for control over sensitive data in modern web applications. Recently, many systems claim to give control to individuals, promising the preeminent goal of data sovereignty. However, despite recent attention, research and industry efforts are fragmented and lack a holistic system overview. In this paper, we provide the first transecting systematization of data sovereignty by drawing from a dispersed body of knowledge. We clarify the field by identifying its three main areas: (i) decentralized identity, (ii) decentralized access control and (iii) policy-compliant decentralized computation. We find that literature lacks a cohesive set of formal definitions. Each area is considered in isolation, and priorities in industry and academia are not aligned due to a lack of clarity regarding user control. To solve this issue, we propose formal definitions for each sub-area. By highlighting that data sovereignty transcends the domain of decentralized identity, we aim to guide future works to embrace a broader perspective on user control. In each section, we augment our definition with security and privacy properties, discuss the state of the art and proceed to identify open challenges. We conclude by highlighting synergies between areas, emphasizing the real-world benefit obtained by further developing data sovereign systems.},
+	urldate = {2023-12-13},
+	author = {Ernstberger, Jens and Lauinger, Jan and Elsheimy, Fatima and Zhou, Liyi and Steinhorst, Sebastian and Canetti, Ran and Miller, Andrew and Gervais, Arthur and Song, Dawn},
+	year = {2023},
+	note = {Publication info: Preprint.},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/V5TTEWEC/Ernstberger et al. - 2023 - SoK Data Sovereignty.pdf:application/pdf},
+}
+
+@inproceedings{shafagh_droplet_2020,
+	title = {Droplet: {Decentralized} {Authorization} and {Access} {Control} for {Encrypted} {Data} {Streams}},
+	isbn = {978-1-939133-17-5},
+	shorttitle = {Droplet},
+	url = {https://www.usenix.org/conference/usenixsecurity20/presentation/shafagh},
+	language = {en},
+	urldate = {2023-12-13},
+	author = {Shafagh, Hossein and Burkhalter, Lukas and Ratnasamy, Sylvia and Hithnawi, Anwar},
+	year = {2020},
+	pages = {2469--2486},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/Q476PSDE/Shafagh et al. - 2020 - Droplet Decentralized Authorization and Access Co.pdf:application/pdf},
+}
+
+@inproceedings{chen_oauth_2014,
+	address = {New York, NY, USA},
+	series = {{CCS} '14},
+	title = {{OAuth} {Demystified} for {Mobile} {Application} {Developers}},
+	isbn = {978-1-4503-2957-6},
+	url = {https://dl.acm.org/doi/10.1145/2660267.2660323},
+	doi = {10.1145/2660267.2660323},
+	abstract = {OAuth has become a highly influential protocol due to its swift and wide adoption in the industry. The initial objective of the protocol was specific: it serves the authorization needs for websites. What motivates our work is the realization that the protocol has been significantly re-purposed and re-targeted over the years: (1) all major identity providers, e.g., Facebook, Google and Microsoft, have re-purposed OAuth for user authentication; (2) developers have re-targeted OAuth to the mobile platforms, in addition to the traditional web platform. Therefore, we believe that it is necessary and timely to conduct an in-depth study to demystify OAuth for mobile application developers. Our work consists of two pillars: (1) an in-house study of the OAuth protocol documentation that aims to identify what might be ambiguous or unspecified for mobile developers; (2) a field-study of over 600 popular mobile applications that highlights how well developers fulfill the authentication and authorization goals in practice. The result is really worrisome: among the 149 applications that use OAuth, 89 of them (59.7\%) were incorrectly implemented and thus vulnerable. In the paper, we pinpoint the key portions in each OAuth protocol flow that are security critical, but are confusing or unspecified for mobile application developers. We then show several representative cases to concretely explain how real implementations fell into these pitfalls. Our findings have been communicated to vendors of the vulnerable applications. Most vendors positively confirmed the issues, and some have applied fixes. We summarize lessons learned from the study, hoping to provoke further thoughts about clear guidelines for OAuth usage in mobile applications.},
+	urldate = {2023-12-13},
+	booktitle = {Proceedings of the 2014 {ACM} {SIGSAC} {Conference} on {Computer} and {Communications} {Security}},
+	publisher = {Association for Computing Machinery},
+	author = {Chen, Eric Y. and Pei, Yutong and Chen, Shuo and Tian, Yuan and Kotcher, Robert and Tague, Patrick},
+	month = nov,
+	year = {2014},
+	keywords = {android, iOS, mobile platform, same-origin policy},
+	pages = {892--903},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/CLLEX2GW/Chen et al. - 2014 - OAuth Demystified for Mobile Application Developer.pdf:application/pdf},
+}
+
+@misc{kokoris-kogias_calypso_2018,
+	title = {{CALYPSO}: {Private} {Data} {Management} for {Decentralized} {Ledgers}},
+	shorttitle = {{CALYPSO}},
+	url = {https://eprint.iacr.org/2018/209},
+	abstract = {Distributed ledger technologies provide high availability and
+integrity, making them a key enabler for practical and secure
+computation of distributed workloads among mutually distrustful parties.
+However, many practical applications also
+require confidentiality, the third pillar of the CIA triad. In
+this work, we enhance permissioned and permissionless blockchains with the ability to manage confidential data without
+forfeiting availability or decentralization. More specifically,
+CALYPSO sets out to achieve two orthogonal goals that
+challenge modern distributed ledgers: (a) enable blockchains
+to auditably manage secrets and (b) protect distributed computations against arbitrage attacks when their results depend
+on the ordering and secrecy of inputs.
+
+To this end, CALYPSO proposes on-chain secrets, a novel
+abstraction that enforces atomic deposition of an auditable
+trace whenever users access confidential data. Furthermore,
+CALYPSO provides user-controlled consent management
+that ensures revocation atomicity and accountable anonymity.
+Finally, to enable the permissionless deployment of CALYPSO, we introduce an incentive scheme and provide users
+with the option to select their preferred trustees. We evaluated our CALYPSO prototype with a confidential document
+sharing application and a decentralized lottery. Our benchmarks show that the latency of processing transactions increases linearly to the added security (in number of trustees)
+and is in the range of 0.2 to 8 seconds for 16 to 128 trustees.},
+	urldate = {2023-12-13},
+	author = {Kokoris-Kogias, Eleftherios and Alp, Enis Ceyhun and Gasser, Linus and Jovanovic, Philipp and Syta, Ewa and Ford, Bryan},
+	year = {2018},
+	note = {Publication info: Published elsewhere. Major revision. VLDB 2021},
+	keywords = {access control, blockchain, decentralisation, fair-exchange, key management, threshold cryptography},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/VF7TN4PJ/Kokoris-Kogias et al. - 2018 - CALYPSO Private Data Management for Decentralized.pdf:application/pdf},
+}
+
+@techreport{hardt_oauth_2012,
+	type = {Request for {Comments}},
+	title = {The {OAuth} 2.0 {Authorization} {Framework}},
+	url = {https://datatracker.ietf.org/doc/rfc6749},
+	abstract = {The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. This specification replaces and obsoletes the OAuth 1.0 protocol described in RFC 5849. [STANDARDS-TRACK]},
+	number = {RFC 6749},
+	urldate = {2024-01-14},
+	institution = {Internet Engineering Task Force},
+	author = {Hardt, Dick},
+	month = oct,
+	year = {2012},
+	doi = {10.17487/RFC6749},
+	note = {Num Pages: 76},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/FP4RRLBB/Hardt - 2012 - The OAuth 2.0 Authorization Framework.pdf:application/pdf},
+}
+
+@inproceedings{zhang_cloud_2015,
+	title = {The {Cloud} is {Not} {Enough}: {Saving} \{{IoT}\} from the {Cloud}},
+	shorttitle = {The {Cloud} is {Not} {Enough}},
+	url = {https://www.usenix.org/conference/hotcloud15/workshop-program/presentation/zhang},
+	language = {en},
+	urldate = {2024-01-15},
+	author = {Zhang, Ben and Mor, Nitesh and Kolb, John and Chan, Douglas S. and Lutz, Ken and Allman, Eric and Wawrzynek, John and Lee, Edward and Kubiatowicz, John},
+	year = {2015},
+	file = {Full Text PDF:/home/lorenz/Zotero/storage/DL8D3YRQ/Zhang et al. - 2015 - The Cloud is Not Enough Saving IoT from the Clo.pdf:application/pdf},
+}
+
+@misc{noauthor_general_nodate,
+	title = {General {Data} {Protection} {Regulation} ({GDPR}) {Compliance} {Guidelines}},
+	url = {https://gdpr.eu/},
+	abstract = {The EU General Data Protection Regulation went into effect on May 25, 2018, replacing the Data Protection Directive 95/46/EC. Designed to increase data privacy for EU citizens, the regulation levies steep fines on organizations that don’t follow the law.},
+	language = {en-US},
+	urldate = {2024-01-17},
+	journal = {GDPR.eu},
+	file = {Snapshot:/home/lorenz/Zotero/storage/QBVRPZZ5/gdpr.eu.html:text/html},
+}
