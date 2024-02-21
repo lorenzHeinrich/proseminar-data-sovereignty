@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{csquotes}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
   T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -39,7 +40,7 @@ Athletes may want to share fitness data with service providers for analysis, and
 However, if individuals do not want to publicly share their data, some kind of mechanism is required allowing them to specify \textit{who} gets access to \textit{what} data \textit{when}.
 
 Current industry standards rely on centralized authorization and authentication mechanisms acting on behalf of a user to manage data access. \cite{hardt_oauth_2012,noauthor_googles_nodate}
-These practices demand individuals to trust in the correctness of these services while most of the time no efforts are made to provide insight into the actual processes.
+These practices demand individuals to trust in the correctness of these services while most of the time no effort is made to provide insight into the actual processes.
 Additionally, due to the assumption that the service providers are a part of the user's trusted domain, the data is often visible in clear to them, leading to increasing privacy concerns.
 This situation has led to emerging voices questioning who should wield ultimate power over data and how the users' ability to manage their data without relying on third parties can be enhanced. \cite{noauthor_w3f_nodate}
 In essence, this describes the idea of data sovereignty where self-sovereign individuals with the ability to manage their identity and data without trusted intermediates can interact and share data while preserving their privacy. \cite{ernstberger_sok_2023}
@@ -49,11 +50,9 @@ After clarifying the shortcomings current practices suffer from, an alternative 
 By the example of the decentralized access control system Droplet, concrete aspects of decentralized access control will be discussed in further detail, concluding with an evaluation of the contributions of decentralized access control to the idea of data sovereignty.
 
 \section{Access Control}
-
-
-For users of the modern web, granting service providers access to protected resources is a common practice and is often required to even use certain web services.
-A system offering access control essentially enables users to disclose resources owned by them for usage by the requesting web service.
-Desired attributes of Access Control systems are granularity in the access scope and revocability of access at any time by the user.
+In the context of web services, the term \textit{access control} refers to \enquote{the process of granting or denying specific requests to [\dots] obtain and use information and related information processing services [\dots]}. [reference] % // TODO: add a citation
+Traditionally, in the realm of access control, an individual who owns the data subject to access control is designated as the \textit{resource owner}, while the entity seeking access is commonly referred to as the \textit{client}.
+Moreover, the infrastructure housing the protected resources is denoted as the \textit{resource server}.
 
 \subsection{Access Control in Web 2.0}
 A web service (client) requesting access to an access-restricted resource hosted on a resource server can access the resource by using the resource owner's credentials.
@@ -61,23 +60,19 @@ Using this method to grant access comes with several issues.
 First, the resource owner has no option but the update his credentials if he wants to revoke the granted access.
 Second, by disclosing the credentials to the resource server, the client gets access to all resources hosted on that server and third, the compromisation of that client results in a compromisation of the resource owner's credentials and therefore all of the resources of the user hosted on the resource server.
 
-To address those problems, the OAuth protocol specifies an authorization flow describing how clients can request access and how resource owners can satisfy this request without having to disclose their credentials which is also easy to revoke. \cite{hardt_oauth_2012}
+Web 2.0, as we know it today, heavily relies on contributing, creating, and collaborating on various platforms. \cite{community_web_2019}
+As a consequence, there is a demand for systems supporting fine-grained access control to the resources generated and owned by users. 
+To address the challenges the above-described naive authorization approach entails, the OAuth protocol delineates an authorization flow for access control systems outlining the process by which clients can request access to protected resources while enabling resource owners to fulfill these requests without disclosing their credentials.
 
 \subsubsection*{OAuth}
-The protocol introduces four roles:
+The protocol introduces an \textit{authorization server} that authenticates clients and enforces restricted access to resources on behalf of the resource owner.
+The client can request access to a resource of the resource owner and by that obtain an \textit{authorization grant}.
+This grant declares the client as authorized by the resource owner and enables the client to obtain an \textit{access token} from the authorization server in exchange for the access token.
+This token contains a set of attributes specifying to which resource the client.
+Using this token, the client can request the resource from the resource server, which in turn validates the access token and returns the resource in case of a valid token. \cite{hardt_oauth_2012}
 
-\begin{itemize}
-  \item resource owner
-  \item resource server
-  \item client
-  \item authorization server
-\end{itemize}
-
-The client requests access to a resource on the resource server owned by the resource.
-The resource owner authenticates itself by the authorization server and authorizes the authorization server to issue an access token to the client granting access to the requested resource.
-The client can request the resource from the resource server using the access token.
-The resource server validates the access token and serves the resource if the token is valid.
-
+\subsection{Shortcomings of Centralized Access Control}
+\texttt{not finished} %//TODO: rework
 OAuth 2.0 as an authorization standard indeed solves the problems with naive access granting but still leaves the user with the burden of trusting the authorization and resource server to comply with the OAuth specification, protect the resources effectively, and consequently enforce the authorization of clients.
 This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications using OAuth incorrectly implemented the OAuth 2.0 flow, thus making the application vulnerable. \cite{chen_oauth_2014}
 
