@@ -33,29 +33,23 @@
 \end{IEEEkeywords}
 
 \section{Introduction}
-% Why Access Control
-% Key Aspect of Access Control
-% Why are current technologies not enough
-% What decentralization can do better
-% Defining what to expect from this work
-
 The applications of shared personal data cannot be denied.
-Patients may want as much data for their diagnosis to be used as possible while also wanting their medical records to be available for others.
-Athletes may want to share fitness data with service providers for analysis, and users of the web may want their data to be used for a personalized experience.
-However, if individuals do not want to publicly share their data, some kind of mechanism is required allowing them to specify \textit{who} gets \textit{when} access to \textit{what} data.
+Patients may want as much data for their diagnosis to be used as possible while also wanting their medical records to be available for others. \cite{hollis_share_2016}
+Athletes may want to share fitness data with service providers for analysis, and users of the web may want their data to be used for a personalized experience.\cite{nasir_council_nodate}
+However, if individuals do not want to publicly share their data, some kind of mechanism is required allowing them to specify \textit{who} gets access to \textit{what} data \textit{when}.
 
-% On December 14\textsuperscript{th} 2023, the German government passed a law to enhance the digitalization of the German healthcare system also including an electronic health record (Elektonische Patientenakte - ePA) that records medication plans, medical history, and other patient-related information, that the patients than can grant access to health insurance providers, medical facilities and other third parties.
-Current industry standards rely on centralized authorization and authentication mechanisms acting on behalf of a user to manage data access.
+Current industry standards rely on centralized authorization and authentication mechanisms acting on behalf of a user to manage data access. \cite{hardt_oauth_2012,noauthor_googles_nodate}
 These practices demand individuals to trust in the correctness of these services while most of the time no efforts are made to provide insight into the actual processes.
-Additionally, due to the assumption, that the service providers are a part of the user's trusted domain, the data is often visible in clear to them leading to increasing privacy concerns of the users.
-This situation has led to emerging voices questioning who should wield ultimate power over data and how users' ability to manage their data without relying on third parties can be enhanced.
-In essence, this describes the idea of data sovereignty where self-sovereign individuals with the ability to manage their identity and data without trusted intermediates can interact and share data while preserving their privacy.
+Additionally, due to the assumption that the service providers are a part of the user's trusted domain, the data is often visible in clear to them, leading to increasing privacy concerns.
+This situation has led to emerging voices questioning who should wield ultimate power over data and how the users' ability to manage their data without relying on third parties can be enhanced. \cite{noauthor_w3f_nodate}
+In essence, this describes the idea of data sovereignty where self-sovereign individuals with the ability to manage their identity and data without trusted intermediates can interact and share data while preserving their privacy. \cite{ernstberger_sok_2023}
 
 In this work, the status quo of access control systems currently used in web-based services will be analyzed while also formulating the key aspects of an access control system.
-After clarifying the shortcomings current practices suffer, an alternative model based on decentralized technologies will be introduced.
+After clarifying the shortcomings current practices suffer from, an alternative model based on decentralized technologies will be introduced.
 By the example of the decentralized access control system Droplet, concrete aspects of decentralized access control will be discussed in further detail, concluding with an evaluation of the contributions of decentralized access control to the idea of data sovereignty.
 
 \section{Access Control}
+
 
 For users of the modern web, granting service providers access to protected resources is a common practice and is often required to even use certain web services.
 A system offering access control essentially enables users to disclose resources owned by them for usage by the requesting web service.
