@@ -15,12 +15,9 @@
 \title{Decentralized Access Control}%*\\
 
 \author{
-  \IEEEauthorblockN{
-    1\textsuperscript{st} Heinrich Lorenz}
-    \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-    \textit{name of organization (of Aff.)}\\
-    Karlsruhe, Germany \\
-    lorenz.heinrich@student.kit.edu}
+  \IEEEauthorblockN{Heinrich Lorenz}
+  Karlsruhe, Germany \\
+  lorenz.heinrich@student.kit.edu
 }
 
 \maketitle
@@ -59,7 +56,16 @@ A web service (client) requesting access to an access-restricted resource hosted
 Using this method to grant access comes with several issues.
 First, the resource owner has no option but the update his credentials if he wants to revoke the granted access.
 Second, by disclosing the credentials to the resource server, the client gets access to all resources hosted on that server and third, the compromisation of that client results in a compromisation of the resource owner's credentials and therefore all of the resources of the user hosted on the resource server.
+Analyzing these issues, one can conclude that the desirable properties of an access control system include
 
+%//TODO: maybe inline?
+\begin{enumerate}
+  \item \textbf{Fine-Grained Access Scope:} Resource owners should be able to specify to which resources they grant access at what point in time.
+  \item \textbf{Individual Access:} Resource owners should be able to independently grant access to different clients.
+  \item \textbf{Revocability of Access:} Resource owners should be able to revoke granted access at any time with minimal effort.
+\end{enumerate}
+
+%//TODO: maybe suits better as an introduction
 Web 2.0, as we know it today, heavily relies on contributing, creating, and collaborating on various platforms. \cite{community_web_2019}
 As a consequence, there is a demand for systems supporting fine-grained access control to the resources generated and owned by users. 
 To address the challenges the above-described naive authorization approach entails, the OAuth protocol delineates an authorization flow for access control systems outlining the process by which clients can request access to protected resources while enabling resource owners to fulfill these requests without disclosing their credentials.
@@ -67,14 +73,22 @@ To address the challenges the above-described naive authorization approach entai
 \subsubsection*{OAuth}
 The protocol introduces an \textit{authorization server} that authenticates clients and enforces restricted access to resources on behalf of the resource owner.
 The client can request access to a resource of the resource owner and by that obtain an \textit{authorization grant}.
-This grant declares the client as authorized by the resource owner and enables the client to obtain an \textit{access token} from the authorization server in exchange for the access token.
-This token contains a set of attributes specifying to which resource the client.
+This grant declares the client as authorized by the resource owner and enables the client to obtain an \textit{access token} from the authorization server in exchange for the authorization grant.
+This token contains a set of attributes specifying to which resource the client has access to.
 Using this token, the client can request the resource from the resource server, which in turn validates the access token and returns the resource in case of a valid token. \cite{hardt_oauth_2012}
 
 \subsection{Shortcomings of Centralized Access Control}
-\texttt{not finished} %//TODO: rework
-OAuth 2.0 as an authorization standard indeed solves the problems with naive access granting but still leaves the user with the burden of trusting the authorization and resource server to comply with the OAuth specification, protect the resources effectively, and consequently enforce the authorization of clients.
-This trust indeed is questionable considering the findings of recent studies, that more than half of the examined mobile applications using OAuth incorrectly implemented the OAuth 2.0 flow, thus making the application vulnerable. \cite{chen_oauth_2014}
+Access control systems based on the OAuth 2.0 framework indeed mitigate the problems introduced by the naive authorization method by separating the resource owner from the client.
+The protocol allows the resource owner the individually specify which client gets access to what data when enforced by the access tokens issued by the authorization server. \cite{hardt_oauth_2012}
+Thereby key aspects of an access control system are implemented including the properties defined above.
+
+However, the centralized nature of the authorization and resource server introduces a new dimension of concerns.
+Users must trust these entities to comply with the OAuth specification and effectively protect their data by prohibiting access to data from unauthorized clients.
+Additionally, since the OAuth protocol builds upon trust in centralized entities, data on the resource server is not protected from the service providers violating the privacy of users and increasing the risk of data breaches.
+Centralized access control systems also suffer from a single point of failure increasing the risk of unauthorized access.
+
+Unfortunately, these concerns are not only valid in theory but regard the everyday experience of individuals using these services.
+Chen, 2014 examined popular mobile apps using OAuth 2.0 and found that more than half of the examined applications implemented the OAuth 2.0 flow incorrectly, thus making the application, and consequently the data of the users vulnerable. \cite{chen_oauth_2014}
 
 \section{Decentralized Access Control}
 With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale. \cite{zhang_cloud_2015}
