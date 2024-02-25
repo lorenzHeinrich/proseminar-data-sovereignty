@@ -7,6 +7,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{csquotes}
+\usepackage[hidelinks]{hyperref}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
   T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -32,15 +33,15 @@
 
 \section{Introduction}
 The applications of shared personal data cannot be denied.
-Patients may want as much data for their diagnosis to be used as possible while also wanting their medical records to be available for others. \cite{hollis_share_2016}
-Athletes may want to share fitness data with service providers for analysis, and users of the web may want their data to be used for a personalized experience.\cite{nasir_council_nodate}
+Patients may want as much data for their diagnosis to be used as possible while also wanting their medical records to be available for others \cite{hollis_share_2016}.
+Athletes may want to share fitness data with service providers for analysis, and users of the web may want their data to be used for a personalized experience \cite{nasir_council_nodate}.
 However, if individuals do not want to publicly share their data, some kind of mechanism is required allowing them to specify \textit{who} gets access to \textit{what} data \textit{when}.
 
 Current industry standards rely on centralized authorization and authentication mechanisms acting on behalf of a user to manage data access. \cite{hardt_oauth_2012,noauthor_googles_nodate}
 These practices demand individuals to trust in the correctness of these services while most of the time no effort is made to provide insight into the actual processes.
 Additionally, due to the assumption that the service providers are a part of the user's trusted domain, the data is often visible in clear to them, leading to increasing privacy concerns.
-This situation has led to emerging voices questioning who should wield ultimate power over data and how the users' ability to manage their data without relying on third parties can be enhanced. \cite{noauthor_w3f_nodate}
-In essence, this describes the idea of data sovereignty where self-sovereign individuals with the ability to manage their identity and data without trusted intermediates can interact and share data while preserving their privacy. \cite{ernstberger_sok_2023}
+This situation has led to emerging voices questioning who should wield ultimate power over data and how the users' ability to manage their data without relying on third parties can be enhanced \cite{noauthor_w3f_nodate}.
+In essence, this describes the idea of data sovereignty where self-sovereign individuals with the ability to manage their identity and data without trusted intermediates can interact and share data while preserving their privacy \cite{ernstberger_sok_2023}.
 
 In this work, the status quo of access control systems currently used in web-based services will be analyzed while also formulating the key aspects of an access control system.
 After clarifying the shortcomings current practices suffer from, an alternative model based on decentralized technologies will be introduced.
@@ -52,6 +53,9 @@ Traditionally, in the realm of access control, an individual who owns the data s
 Moreover, the infrastructure housing the protected resources is denoted as the \textit{resource server}.
 
 \subsection{Access Control in Web 2.0}
+Web 2.0, as we know it today, heavily relies on contributing, creating, and collaborating on various platforms \cite{community_web_2019}.
+As a consequence, there is a demand for systems supporting fine-grained access control to the resources generated and owned by users.
+
 A web service (client) requesting access to an access-restricted resource hosted on a resource server can access the resource by using the resource owner's credentials.
 Using this method to grant access comes with several issues.
 First, the resource owner has no option but the update his credentials if he wants to revoke the granted access.
@@ -65,21 +69,18 @@ Analyzing these issues, one can conclude that the desirable properties of an acc
   \item \textbf{Revocability of Access:} Resource owners should be able to revoke granted access at any time with minimal effort.
 \end{enumerate}
 
-%//TODO: maybe suits better as an introduction
-Web 2.0, as we know it today, heavily relies on contributing, creating, and collaborating on various platforms. \cite{community_web_2019}
-As a consequence, there is a demand for systems supporting fine-grained access control to the resources generated and owned by users. 
-To address the challenges the above-described naive authorization approach entails, the OAuth protocol delineates an authorization flow for access control systems outlining the process by which clients can request access to protected resources while enabling resource owners to fulfill these requests without disclosing their credentials.
-
 \subsubsection*{OAuth}
+To address the challenges the above-described naive authorization approach entails, the OAuth protocol delineates an authorization flow for access control systems outlining the process by which clients can request access to protected resources while enabling resource owners to fulfill these requests without disclosing their credentials.
 The protocol introduces an \textit{authorization server} that authenticates clients and enforces restricted access to resources on behalf of the resource owner.
 The client can request access to a resource of the resource owner and by that obtain an \textit{authorization grant}.
 This grant declares the client as authorized by the resource owner and enables the client to obtain an \textit{access token} from the authorization server in exchange for the authorization grant.
 This token contains a set of attributes specifying to which resource the client has access to.
-Using this token, the client can request the resource from the resource server, which in turn validates the access token and returns the resource in case of a valid token. \cite{hardt_oauth_2012}
+Using this token, the client can request the resource from the resource server, which in turn validates the access token and returns the resource in case of a valid token \cite{hardt_oauth_2012}.
 
 \subsection{Shortcomings of Centralized Access Control}
+\label{sec:shortcomings}
 Access control systems based on the OAuth 2.0 framework indeed mitigate the problems introduced by the naive authorization method by separating the resource owner from the client.
-The protocol allows the resource owner the individually specify which client gets access to what data when enforced by the access tokens issued by the authorization server. \cite{hardt_oauth_2012}
+The protocol allows the resource owner the individually specify which client gets access to what data when enforced by the access tokens issued by the authorization server \cite{hardt_oauth_2012}.
 Thereby key aspects of an access control system are implemented including the properties defined above.
 
 However, the centralized nature of the authorization and resource server introduces a new dimension of concerns.
@@ -88,70 +89,75 @@ Additionally, since the OAuth protocol builds upon trust in centralized entities
 Centralized access control systems also suffer from a single point of failure increasing the risk of unauthorized access.
 
 Unfortunately, these concerns are not only valid in theory but regard the everyday experience of individuals using these services.
-Chen, 2014 examined popular mobile apps using OAuth 2.0 and found that more than half of the examined applications implemented the OAuth 2.0 flow incorrectly, thus making the application, and consequently the data of the users vulnerable. \cite{chen_oauth_2014}
+Chen, 2014 examined popular mobile apps using OAuth 2.0 and found that more than half of the examined applications implemented the OAuth 2.0 flow incorrectly, thus making the application, and consequently the data of the users vulnerable \cite{chen_oauth_2014}.
+To address privacy concerns, governments are trying to protect users via regulatory frameworks raising the question of how to ensure service providers follow accordingly \cite{noauthor_general_nodate}.
 
 \section{Decentralized Access Control}
-With the upcoming popularity of IoT devices especially in the realm of wearables and sensors on and around humans, highly privacy-relevant data is generated on a large scale. \cite{zhang_cloud_2015}
-Data-centric centralized industry practices assume that the service provider is part of the user's trusted domain and therefore no effort is made to ensure data confidentiality, allowing for uncontrolled sharing of this highly personal data. \cite{shafagh_droplet_2020}
-These industry practices have led to attempts to control data privacy via privacy regulations that introduced the challenge of ensuring that service providers follow accordingly. \cite{noauthor_general_nodate}
+Shortcomings in privacy have led to a call for a paradigm shift towards a \textit{user-centric} approach, as opposed to a \textit{data-centric} approach, both in technical and non-technical communities \cite{ernstberger_sok_2023, shafagh_droplet_2020}.
+The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen \cite{ernstberger_sok_2023}.
+Decentralized access control leverages decentralized technologies, threshold cryptography, and end-to-end encryption to contribute to the realization of user-centric systems, tackling the fundamental issues centralized approaches entail.
 
-Shortcomings in privacy have led to a call for a paradigm shift towards a user-centric approach, as opposed to a data-centric approach, both in technical and non-technical communities. \cite{ernstberger_sok_2023, shafagh_droplet_2020}
+\subsection{Definition}
+Decentralized Access Control enables resource owners to verifiably share data with data consumers by specifying fine-grained access policies without exposing the data in cleartext to any third party and without the need to rely on any trusted intermediate while preserving their privacy.
 
-\subsubsection{Definition}
-Decentralized Access Control enables data owners to verifiably share data with data consumers by specifying fine-grained access policies without exposing the data in clear to any third party and without the need to rely on any trusted intermediate.
-The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen. \cite{ernstberger_sok_2023}
+\subsection{Model}
+In the following, a theoretical model of decentralized access control is introduced.
+This model is described not strictly, but mostly according to Ernstberger, 2023 \cite{ernstberger_sok_2023}.
 
-The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen.
-
-\subsubsection{Model}
-
-The model of decentralized access control is described as follows:
+\subsubsection{Entities}
+The following entities are utilized:
 
 \begin{itemize}
-  \item \textbf{Data Owner:} A User that wants to share personal data with a data consumer.
-  \item \textbf{Data Consumer:} A service that wants to access personal data of the user.
-  \item \textbf{Storage:} The location where the encrypted data units are stored.
-  The Storage can be local, a centralized, or a decentralized storage provider.
-  \item \textbf{Access Controler:} Computational Nodes, granting access to a ciphertext by releasing the according secret shares to the requesting data consumer after validation of the proof of policy satisfaction provided by the data consumer.
-  \item \textbf{Access Policies:} Policies specified by the user describing under which conditions a data consumer can access the secret shares of a specific ciphertext.
-  \item \textbf{Distributed Ledger:} A technology maintaining a globally verifiable, append-only distributed log of transactions. A popular example is the blockchain technology. 
+  \item \textbf{User:} An individual or organization that owns data that is subject to access control.
+  \item \textbf{Data Consumer:} An entity that is interested in the data of a user and wants to access it.
+  \item \textbf{Storage:} An abstract storage unit that stores encrypted data and is available to both the data consumer and the user.
+  \item \textbf{Access Controler:} A computational node that enforces access policies on behalf of the user.
+  \item \textbf{Distributed Ledger:} A distributed, append-only, and globally verifiable data structure that logs transactions.
+  By utilizing proof-of-work and consensus algorithms, mutually distrustful parties manage a global state that is deemed trustworthy under specific assumptions without relying on a central trusted entity.
+  A prominent illustration of this concept can be found in blockchain-based technologies \cite{zheng_overview_2017}.
 \end{itemize}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.4\textwidth]{figures/decentralized_access_control.png}
-  \caption{Decentralized Access Control}
+  \includegraphics[width=\linewidth]{figures/decentralized_access_control.pdf}
+  \caption{
+    This figure illustrates the flow between the entities according to the decentralized access control model by depicting the steps and interactions required by each entity to perform authorized access. \cite{ernstberger_sok_2023}.
+    In \autoref{sec:supported_actions}, the steps are elaborated in further detail.
+  }
   \label{fig:decentralized_access_control}
 \end{figure}
-Fig. \ref{fig:decentralized_access_control} illustrates the steps required to share user data with a data consumer using the decentralized access control model.
 
-For a given secret k, she computes a set of shares that gets sent to a committee of access controllers.
+\subsubsection{Supported Actions}
+\label{sec:supported_actions}
+The supported actions of the decentralized access model are introduced alongside the scenario in which a user wants to share data with a data consumer.
+The user achieves this by utilizing a decentralized access control system that complies with the introduced model.
 
-Using this secret k for a data item that is desirable to grant access to, the data item is encrypted and stored in the user's wallet or another storage system, and an access policy is published on-chain specifying under which conditions a data consumer is authorized to access the data item.
+\begin{enumerate}
+  \item The user generates a secret key $s$ that is used for the encryption of the data item $d$, the user wants to share.
+  Using a $(k,n)$ secret sharing scheme, the user generates $n$ shares from that secret such that $k$ shares are sufficient to reconstruct the secret $s$ \cite{shamir_how_1979}.
+  These shares are shared with a committee of $n$ access controls where each access controller receives one share.
+  \item Using the secret $s$, the user encrypts  $d$ and stores the resulting ciphertext $c_d$ in the storage.
+  \item To specify the set of authorized data consumers, a policy $p_d$ is generated defining under which conditions a data consumer is authorized to access the $d$.
+  This policy is then published to the ledger $L$.
+  \item A data consumer that wants to access $d$, fetches $p_d$ from $L$ and calculates a cryptographic proof $\pi$, claiming him as authorized to access $d$.
+  \item By presenting $\pi$ to the committee of access controllers, the data consumer requests access to $d$.
+  \item Each access controller validates $\pi$ by checking it against $p_d$ published on $L$.
+  If the $\pi$ is valid, the access controller releases its share to the data consumer.
+  \item The data consumer can reconstruct $s$ in case of $k$ access controllers releasing their share.
+  Finally, the data consumer obtains $c_d$ from the storage and accesses $d$ by decrypting $c_d$ using the reconstructed secret $s$. 
+\end{enumerate}
 
-A data consumer wishing to access the data item is required to supply proof to the committee of access controller stating that the data consumer fulfills the access policy.
+\subsection{Improvements over centralized approaches}
+As analyzed in \autoref{sec:shortcomings}, centralized access control falls short in respecting the users' privacy and providing reliable systems that transparently enforce access policies.
+The root of these issues lies in the centralized nature of the policy-enforcing entities.
 
-After validating the supplied proof from the data consumer the committee of access controllers releases the secret shares of the secret key k that was used for the encryption of the data item, the data consumer proved to have access to.
+By only storing ciphertexts in storage units, the privacy violations of data breaches can be minimized ensuring data confidentiality independently from the safety of the storage system. The single point of failure the authorization server is subject to is resolved by decentralizing the policy enforcement point.
+No trust in any single access controller in the committee is necessary, since the decentralized access control model tolerates $n - k$ misbehaving nodes.
+Any authentication and access can be audited by the user if requested, by corresponding transactions to the ledger enabling the user to independently verify the correctness of the access control system.
+Privacy for data consumers and users is provided by keeping data consumers anonymous during authentication and access unless requested by an audit.
 
-Using the shares and the ciphertext of the data item, the data consumer can successfully decipher it by reconstructing the secret k.
+\section{Access Policies for Time Series Data Streams}
 
-An Update to the access policy only requires the user to publish a new access policy to the distributed ledger.
-
-\subsubsection{Additional Properties}
-\begin{itemize}
-  \item Data confidentiality
-  \item Anonymity
-  \item Auditability
-  \item Policy Confidentiality
-  \item Fair Access
-  \item Access Revocation
-\end{itemize}
-
-\subsection{Decentralized Access Control with the Example of Calypso}
-
-\section{Confidential yet Expressive Access Policies?}
-
-\subsection{On-Chain Secrets}
 
 
 \bibliographystyle{IEEEtran}
