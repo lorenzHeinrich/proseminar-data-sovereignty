@@ -24,15 +24,17 @@
 \maketitle
 
 \begin{abstract}
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+  In the era of digitalization, online collaboration, and artificial intelligence data plays a crucial role.
+  However, the practices this data is managed often disregard the user's privacy, and power over this data is increasingly accumulated by large enterprises.
+  This work aims to provide an understanding of the domain of data management, particularly focusing on access control for privacy-sensitive data.
+  It analyzes the status quo in which individuals find themselves, introduces a theoretical decentralized access control model, and discusses the potential improvements decentralized technologies can offer.
+  Furthermore, it explores the role of decentralized access control within the broader context of data sovereignty identifying its contributions and dependencies.
 \end{abstract}
 
-\begin{IEEEkeywords}
-  lorem, ipsum, dolor, sit, amet
-\end{IEEEkeywords}
-
 \section{Introduction}
-The applications of shared personal data cannot be denied.
+Data sharing is a key element in our everyday lives.
+Driven by cloud applications, wearables, the digitalization of the health sector, and many more, the amount of generated personal and privacy-sensitive data is rapidly increasing.
+And indeed, the applications of shared personal data cannot be denied.
 Patients may want as much data for their diagnosis to be used as possible while also wanting their medical records to be available for others \cite{hollis_share_2016}.
 Athletes may want to share fitness data with service providers for analysis, and users of the web may want their data to be used for a personalized experience \cite{nasir_council_nodate}.
 However, if individuals do not want to publicly share their data, some kind of mechanism is required allowing them to specify \textit{who} gets access to \textit{what} data \textit{when}.
@@ -93,6 +95,7 @@ Chen, 2014 examined popular mobile apps using OAuth 2.0 and found that more than
 To address privacy concerns, governments are trying to protect users via regulatory frameworks raising the question of how to ensure service providers follow accordingly \cite{noauthor_general_nodate}.
 
 \section{Decentralized Access Control}
+\label{sec:decentralized_access_control}
 Shortcomings in privacy have led to a call for a paradigm shift towards a \textit{user-centric} approach, as opposed to a \textit{data-centric} approach, both in technical and non-technical communities \cite{ernstberger_sok_2023, shafagh_droplet_2020}.
 The primary goal of the concept of decentralized access control is to bring back the power over the data to the data owners by treating data privacy as a first-class citizen \cite{ernstberger_sok_2023}.
 Decentralized access control leverages decentralized technologies, threshold cryptography, and end-to-end encryption to contribute to the realization of user-centric systems, tackling the fundamental issues centralized approaches entail.
@@ -142,12 +145,12 @@ The user achieves this by utilizing a decentralized access control system that c
   \item A data consumer that wants to access $d$, fetches $p_d$ from $L$ and calculates a cryptographic proof $\pi$, claiming him as authorized to access $d$.
   \item By presenting $\pi$ to the committee of access controllers, the data consumer requests access to $d$.
   \item Each access controller validates $\pi$ by checking it against $p_d$ published on $L$.
-  If the $\pi$ is valid, the access controller releases its share to the data consumer.
+  If $\pi$ is valid, the access controller releases its share to the data consumer.
   \item The data consumer can reconstruct $s$ in case of $k$ access controllers releasing their share.
   Finally, the data consumer obtains $c_d$ from the storage and accesses $d$ by decrypting $c_d$ using the reconstructed secret $s$. 
 \end{enumerate}
 
-\subsection{Improvements over centralized approaches}
+\subsection{Improvements Over Centralized Approaches}
 As analyzed in \autoref{sec:shortcomings}, centralized access control falls short in respecting the users' privacy and providing reliable systems that transparently enforce access policies.
 The root of these issues lies in the centralized nature of the policy-enforcing entities.
 
@@ -157,8 +160,49 @@ Any authentication and access can be audited by the user if requested, by corres
 Privacy for data consumers and users is provided by keeping data consumers anonymous during authentication and access unless requested by an audit.
 
 \section{Access Policies for Time Series Data Streams}
+Droplet \cite{shafagh_droplet_2020} is a decentralized access control system designed for time series data streams produced by IoT devices \cite{zhang_cloud_2015}.
+It leverages end-to-end encryption access control and blockchain technology, to allow flexible data sharing of data streams from IoT owned by the resource owner without involving trusted intermediates.
+Despite Droplet not relying on distributed secret management as the policy enforcement point but encrypting the key material required for decryption using the data consumers' public key, in the following, the flexible, crypto-based access policies are analyzed as an example.
 
+Droplet uses a combination of different cryptographic concepts to ensure, that data consumers get only access to a specified set of data.
+Due to the nature of time series data, time is regarded as the primary attribute for specifying access policies.
+The core idea of Droplets' access policies is to serialize the data stream into time-encoded data chunks, each encrypted using a unique key assigned per chunk.
+Employing binary hash trees and dual-key regression, the access policies can be encoded into a small set of keys.
 
+\subsection{Binary Hash Tree}
+Given an initial secret random seed as the root, utilizing two different hash functions $hash_l()$ and $hash_r()$, a binary hash tree can be derived to an arbitrary height.
+Using a key-derivation function to generate keys from the leaves of the binary hash tree enables the user to share arbitrary intervals of key material by only sharing the corresponding inner nodes.
+
+\subsection{Dual-Key Regression}
+Key regression schemes allow the derivation of previous keys by applying the hash function successively on a given hash token \cite{fu_key_2005, shafagh_droplet_2020}.
+This practically enables the sharing of decryption keys from the current time to the beginning, by providing the current hash token.
+But since the all-or-none principle this method entails is not desirable in scenarios where data should only be shared from a certain point in time until now, Droplet employs a contrary hash chain enforcing a lower time-bound.
+With the need to have both tokens available to derive the corresponding key, the lower time-bound can be enforced by sharing only the token from that point in time for the contrary hash chain.
+Due to the pre-image resistance of hash functions, it is computationally impractical to calculate any previous hash tokens.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/dual_key_regression.pdf}
+  \caption{
+    This figure is inspired by Figure 4 from Shafagh, 2020 \cite{shafagh_droplet_2020} and illustrates the dual-key regression mechanism.
+    It enhances traditional key regression to only calculate keys to a specified lower time-bound.
+    The $keygen()$ function requires the tokens from both the primary key-regression and the secondary hash chain to derive the key $k_i$ from the time point $t_i$.
+    By sharing the token $h'_i$ paired with the current token of the primary key-regression, the data consumer can calculate all keys from $t_i$ to $t_{current}$. 
+  }
+  \label{fig:dual_key_regression}
+\end{figure}
+
+\subsection{Access Policies}
+Droplet's access policies consist of the ID of the stream subject to the policy, the public key of the data owner the user wants to share a subset of the stream with, and the specified access scope that is either an inner node from the corresponding binary hash tree or a hash token to a certain point in time if access shall be granted in subscription mode.
+
+Droplet, as an example, provides insight into how access policies can be tailored for particular use cases.
+The theoretical model of decentralized access control, as outlined in \autoref{sec:decentralized_access_control}, enables a diverse range of applications.
+By providing a broad framework without delving into specific implementation details, concrete access control systems can build upon this basis while addressing the specific requirements and challenges of their respective domain.
+
+\section{Data Sovereignty of Decentralized Access Control}
+\begin{itemize}
+  \item 
+\end{itemize}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
