@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="qOfLsTkaPFJ4uB4mqd7r" name="Page-1">
-        <mxGraphModel dx="814" dy="745" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="1" shadow="0">
+        <mxGraphModel dx="554" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="1" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -28,7 +28,7 @@
                 <mxCell id="45" value="Storage" style="verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.storage;fontSize=20;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="390" y="530" width="70" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;1) to given. secret key `k`,&lt;br style=&quot;font-size: 18px;&quot;&gt;&lt;i style=&quot;font-size: 18px;&quot;&gt;provide shares&lt;/i&gt;&amp;nbsp;`k_i`&lt;/font&gt;" style="endArrow=classic;html=1;strokeWidth=2;edgeStyle=elbowEdgeStyle;elbow=vertical;fontSize=18;strokeColor=#696969;" parent="1" source="64" target="39" edge="1">
+                <mxCell id="46" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;1) to given. secret key `s`,&lt;br style=&quot;font-size: 18px;&quot;&gt;&lt;i style=&quot;font-size: 18px;&quot;&gt;provide shares&lt;/i&gt;&amp;nbsp;`s_i`&lt;/font&gt;" style="endArrow=classic;html=1;strokeWidth=2;edgeStyle=elbowEdgeStyle;elbow=vertical;fontSize=18;strokeColor=#696969;" parent="1" source="64" target="39" edge="1">
                     <mxGeometry x="0.1673" y="-30" width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="300" y="700" as="sourcePoint"/>
                         <mxPoint x="350" y="650" as="targetPoint"/>
@@ -41,7 +41,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="47" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2) encrypt data item `d`&lt;br style=&quot;font-size: 18px;&quot;&gt;under `k` und store chiphertext `c_d`&lt;/font&gt;" style="endArrow=classic;html=1;strokeWidth=2;fontSize=18;strokeColor=#696969;edgeStyle=orthogonalEdgeStyle;" parent="1" source="64" target="45" edge="1">
+                <mxCell id="47" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2) encrypt data item `d`&lt;br style=&quot;font-size: 18px;&quot;&gt;under `s` und store chiphertext `c_d`&lt;/font&gt;" style="endArrow=classic;html=1;strokeWidth=2;fontSize=18;strokeColor=#696969;edgeStyle=orthogonalEdgeStyle;" parent="1" source="64" target="45" edge="1">
                     <mxGeometry x="-0.0163" y="-27" width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="692.5454545454545" y="590.6607372437134" as="sourcePoint"/>
                         <mxPoint x="433.80255114041574" y="486.0145647802708" as="targetPoint"/>
@@ -79,7 +79,7 @@
                         <mxPoint x="262.44827586206907" y="730" as="sourcePoint"/>
                         <mxPoint x="204.51724137931046" y="660" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="160" y="460"/>
+                            <mxPoint x="80" y="460"/>
                             <mxPoint x="280" y="430"/>
                             <mxPoint x="280" y="450"/>
                         </Array>

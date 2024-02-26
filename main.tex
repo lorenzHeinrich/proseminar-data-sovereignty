@@ -27,7 +27,7 @@
   In the era of digitalization, online collaboration, and artificial intelligence data plays a crucial role.
   However, the practices this data is managed often disregard the user's privacy, and power over this data is increasingly accumulated by large enterprises.
   This work aims to provide an understanding of the domain of data management, particularly focusing on access control for privacy-sensitive data.
-  It analyzes the status quo in which individuals find themselves, introduces a theoretical decentralized access control model, and discusses the potential improvements decentralized technologies can offer.
+  It analyzes the status quo in which individuals find themselves by having to rely on centralized authorization services, introduces a theoretical decentralized access control model, and discusses the potential improvements decentralized technologies can offer.
   Furthermore, it explores the role of decentralized access control within the broader context of data sovereignty identifying its contributions and dependencies.
 \end{abstract}
 
@@ -50,7 +50,7 @@ After clarifying the shortcomings current practices suffer from, an alternative 
 By the example of the decentralized access control system Droplet, concrete aspects of decentralized access control will be discussed in further detail, concluding with an evaluation of the contributions of decentralized access control to the idea of data sovereignty.
 
 \section{Access Control}
-In the context of web services, the term \textit{access control} refers to \enquote{the process of granting or denying specific requests to [\dots] obtain and use information and related information processing services [\dots]}. [reference] % // TODO: add a citation
+In the context of web services, the term \textit{access control} refers to \enquote{the process of granting or denying specific requests to [\dots] obtain and use information and related information processing services [\dots]} \cite{editor_access_nodate}.
 Traditionally, in the realm of access control, an individual who owns the data subject to access control is designated as the \textit{resource owner}, while the entity seeking access is commonly referred to as the \textit{client}.
 Moreover, the infrastructure housing the protected resources is denoted as the \textit{resource server}.
 
@@ -82,13 +82,13 @@ Using this token, the client can request the resource from the resource server, 
 \subsection{Shortcomings of Centralized Access Control}
 \label{sec:shortcomings}
 Access control systems based on the OAuth 2.0 framework indeed mitigate the problems introduced by the naive authorization method by separating the resource owner from the client.
-The protocol allows the resource owner the individually specify which client gets access to what data when enforced by the access tokens issued by the authorization server \cite{hardt_oauth_2012}.
+The protocol allows the resource owner to individually specify which client gets access to what data when enforced by the access tokens issued by the authorization server \cite{hardt_oauth_2012}.
 Thereby key aspects of an access control system are implemented including the properties defined above.
 
 However, the centralized nature of the authorization and resource server introduces a new dimension of concerns.
 Users must trust these entities to comply with the OAuth specification and effectively protect their data by prohibiting access to data from unauthorized clients.
-Additionally, since the OAuth protocol builds upon trust in centralized entities, data on the resource server is not protected from the service providers violating the privacy of users and increasing the risk of data breaches.
-Centralized access control systems also suffer from a single point of failure increasing the risk of unauthorized access.
+Additionally, since the OAuth protocol builds upon trust in centralized entities, data on the resource server is not protected from the service providers violating the privacy of users.
+Centralized access control systems also suffer from a single point of failure increasing the risk of unauthorized access and data breaches.
 
 Unfortunately, these concerns are not only valid in theory but regard the everyday experience of individuals using these services.
 Chen, 2014 examined popular mobile apps using OAuth 2.0 and found that more than half of the examined applications implemented the OAuth 2.0 flow incorrectly, thus making the application, and consequently the data of the users vulnerable \cite{chen_oauth_2014}.
@@ -200,9 +200,24 @@ The theoretical model of decentralized access control, as outlined in \autoref{s
 By providing a broad framework without delving into specific implementation details, concrete access control systems can build upon this basis while addressing the specific requirements and challenges of their respective domain.
 
 \section{Data Sovereignty of Decentralized Access Control}
-\begin{itemize}
-  \item 
-\end{itemize}
+The idea of data sovereignty imagines a web, where self-sovereign users can manage their identity and data in a privacy-preserving manner.
+To realize this ideal, access control systems are one of the fundamental requirements to enable users, to precisely define authorized data consumers without trusting any intermediate and without disclosing any data in cleartext.
+With decentralizing single points of failure and leveraging states managed by mutually distrustful parties, decentralized access control establishes a trustworthy, and more importantly verifiable access control tool for their users.
+Additionally, decentralized access control satisfies the strong privacy requirements, by never exposing data in cleartext to an unauthorized party, even in case of misbehaving computation nodes, malicious storage providers, or data breaches.
+
+However, a decentralized system offering access control tools builds upon verifiable identifiers for individuals, organizations, and data consumers.
+Users must rely on the authenticity of the identifiers, they are using for their access policies, otherwise, malicious parties can easily trick users into sharing data with them voluntarily by impersonating other data consumers.
+Luckily decentralized anonymous credentials based on public key cryptography are well understood, and first attempts to introduce public key identitites to the broader public can already be observed \cite{noauthor_keybase_nodate}.
+
+More challenging is the question of what happens with the data once it's in the hands of data consumers.
+Decentralized access control alone cannot fully address fundamental issues such as misuse of personal information, unauthorized data sharing, or even the resale of data to third parties by authorized data consumers.
+The challenge is to ensure, that users can not only decide with which party they are sharing their data with but also how the data must be used.
+Efforts on this front can be recognized in the field of policy-compliant computation, where programs data consumers want to use to analyze the data are verified, and access is only granted if these programs comply with the users' policy \cite{ernstberger_sok_2023}.
+
+A system achieving overall data sovereignty may currently be beyond our technological reach, but significant improvements over the current state are already possible. Current technologies can be leveraged to enhance the privacy of users on the web without resorting to ambiguous cookie agreements or far-reaching regulatory frameworks.
+Droplet serves as an exemplary decentralized access control system tackling the severe privacy concerns posed by IoT and wearables.
+By enhancing data confidentiality and transparency for the end users, Droplet provides an outlook of what is already possible with decentralized technologies.
+Decentralized access control is an immense improvement over centralized access control systems like OAuth 2.0 offering a solid foundation for future applications aimed at returning power over data to those the data belong to.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
